@@ -64,16 +64,16 @@ app.on('formAjaxSuccess', function (formEl, data, xhr) {
         case 'cadastro': 
             msg = obj.mensagem;
             if (typeof obj.error === "boolean" && !obj.error) {
-                popup.close();
                 clearFields(el);
+                app.popup.close(".cadastrar-agora");
             }
         break;
         case 'login':
             msg = obj.mensagem;
             if (typeof obj.error === "boolean" && !obj.error) {
                 setUsuario(xhr.response);
-                popup.close();
                 clearFields(el);
+                app.popup.close(".entrar");
                 app.methods.refreshPages('inicio');
             }
         break;

@@ -63,6 +63,13 @@ var app = new Framework7({
                     app.methods.disabledTabs();
                     resolve({ componentUrl: './tabs/inicio.html' })
                 }
+            },
+            on: {
+                pageInit: function(e,page) {
+                    if (page.name == "inicio") {
+                        app.methods.formCadastrar();
+                    }
+                }
             }
         },
         {
@@ -237,27 +244,18 @@ var app = new Framework7({
                 break;
             }
         },
-        entrar: function() {
-            popup = app.methods.createPopup('.entrar');
-            popup.open();
-        },
         sair: function() {
             window.localStorage.removeItem('usuario');
             app.methods.clearForms();
             app.methods.refreshPages('inicio');
         },
-        cadastrar: function() {
-            var el = $$('#app');
-            el.find('.btn-cadastrar').on('click',function(){
-                var senha = el.find('.cadastrar-agora #senha'),
-                repetir_senha = el.find('.cadastrar-agora #repetir_senha'),
-                cpf = el.find('.cadastrar-agora #cpf');
-
-                popup = app.methods.createPopup('.cadastrar-agora');
-                popup.open();
-                app.methods.verificarSenha(senha,repetir_senha);
-                app.methods.verificarCPF(cpf);
-            });
+        formCadastrar: function() {
+            var el = $$('#app'),
+            senha = el.find('.cadastrar-agora #senha'),
+            repetir_senha = el.find('.cadastrar-agora #repetir_senha'),
+            cpf = el.find('.cadastrar-agora #cpf');
+            app.methods.verificarSenha(senha,repetir_senha);
+            app.methods.verificarCPF(cpf);
             app.methods.mask(el,null);
         },
         servico: function(id_servico) {
