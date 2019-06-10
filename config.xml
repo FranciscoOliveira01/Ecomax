@@ -36,21 +36,17 @@
         <preference name="StatusBarOverlaysWebView" value="true" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
-            <icon src="res/icon/ios/icon-120.png" gap:platform="ios" width="120" height="120" />
-            <icon src="res/icon/ios/icon-76.png" gap:platform="ios" width="76" height="76" />
-            <icon src="res/icon/ios/icon-40.png" gap:platform="ios" width="40" height="40" />
-            <icon src="res/icon/ios/icon-152.png" gap:platform="ios" width="152" height="152" />
-            <!-- <icon src="res/ios/ICON_APP_ECOMAX_36X36.png" width="36" height="36" />
-            <icon src="res/ios/icon-36.png" width="36" height="36" />
-            <icon src="res/icon/ios/icon-120.png" gap:platform="ios" width="120" height="120" />
-            <icon src="res/icon/ios/icon-76.png" gap:platform="ios" width="76" height="76" />
-            <icon src="res/icon/ios/icon-40.png" gap:platform="ios" width="40" height="40" />
-            <icon src="res/icon/ios/icon-152.png" gap:platform="ios" width="152" height="152" /> -->
+            
             <!-- iOS 8.0+ -->
             <!-- iPhone 6 Plus  -->
            <!--  <icon src="res/ios/icon-60@3x.png" width="180" height="180" /> -->
             <!-- iOS 7.0+ -->
             <!-- iPhone / iPod Touch  -->
+            <icon src="res/icon/ios/icon-120.png" width="120" height="120" />
+            <icon src="res/icon/ios/icon-76.png"  width="76" height="76" />
+            <icon src="res/icon/ios/icon-40.png"  width="40" height="40" />
+            <icon src="res/icon/ios/icon-152.png"  width="152" height="152" />
+            <icon src="res/ios/icon-36.png" width="36" height="36" />
             <!-- <icon src="res/ios/icon-20@3x.png" width="60" height="60" />
             <icon src="res/ios/icon-60@2x.png" width="120" height="120" /> -->
             <!-- iPad -->
