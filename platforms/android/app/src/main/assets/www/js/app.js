@@ -18,7 +18,7 @@ var app = new Framework7({
     },
     data: {
         urlJivo: 'http://open.velty.com.br/ecomax/jivochat.html',
-        url: 'http://localhost:80/Ecomax/api_app',
+        url: 'http://open.velty.com.br/ecomax/api_app',
         chave: '8a002216f31cbfae2ddcfa039343a215ee35c4c517080d72',
         moderador: 'Ecomax',
         statusBar: {
