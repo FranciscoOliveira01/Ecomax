@@ -1,0 +1,12 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Ecomax",
+  "short_name": "Ecomax",
+  "version": "br.com.ecomaxapp",
+  "description": "Aplicativo da Ecomax.",
+  "author": "Velty",
+  "icons": [],
+  "start_url": "index.html",
+  "theme_color": "#FFCB05"
+}

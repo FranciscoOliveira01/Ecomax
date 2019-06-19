@@ -1,0 +1,189 @@
+<template>
+    <div class="page" data-name="inicio">
+        <div class="page-content intro" id="inicio">
+            <div class="middle content-intro">
+                <div class="row center">
+                    <div class="block-title block-title-large" style="margin-top: 5em;">Bem-vindo(a)</div>
+                    <p style="margin:0px auto;">
+                        Cadastre-se e aproveite o m&aacute;ximo do seu empreendimento Ecomax<br><br>
+                        <a class="button button-raised button-round button-fill color-white btn-entrar popup-open" href="#" data-popup=".entrar">Entrar</a><br><br>
+                        <!-- <img src="img/botao_fake.png" class="btn-facebook" style="max-width: 80%; height: auto;" /><br><br> -->
+                        <a class="btn-cadastrar popup-open" href="#" data-popup=".cadastrar-agora"><b>Cadastre-se agora</b></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Popup -->
+        <div class="popup cadastrar-agora">
+            <div class="view view-init">
+                <div class="page">
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <div class="title">Cadastrar</div>
+                            <div class="right">
+                                <a href="#" class="link popup-close">Fechar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-content">
+                        <div class="block">
+                            <form action="{{$app.data.url}}/cadastro" method="POST" class="form-ajax-submit" id="cadastro">
+                                <input type="hidden" name="chave" value="{{$app.data.chave}}" class="noempty" />
+                                <div class="list no-hairlines-md">
+                                    <ul>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-title item-label">Nome</div>
+                                                <div class="item-input-wrap">
+                                                    <input type="text" name="nome" id="nome" autocomplete="off" placeholder="" required validate />
+                                                    <span class="input-clear-button"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-title item-label">CPF</div>
+                                                <div class="item-input-wrap">
+                                                    <input type="text" name="cpf" id="cpf" autocomplete="off" placeholder="" required validate />
+                                                    <span class="input-clear-button"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-title item-label">E-mail</div>
+                                                <div class="item-input-wrap">
+                                                    <input type="email" name="email" id="email" autocomplete="off" placeholder="" required validate />
+                                                    <span class="input-clear-button"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-title item-label">Telefone</div>
+                                                <div class="item-input-wrap">
+                                                    <input type="text" name="telefone" id="telefone" autocomplete="off" placeholder="" required validate />
+                                                    <span class="input-clear-button"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-title item-label">Senha (mínimo 6 caracteres)</div>
+                                                <div class="item-input-wrap">
+                                                    <input type="password" name="senha" minlength="6" autocomplete="off" id="senha" placeholder="" required validate />
+                                                    <span class="input-clear-button"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-title item-label">Repetir Senha</div>
+                                                <div class="item-input-wrap">
+                                                    <input type="password" name="repetir_senha" autocomplete="off" minlength="6" id="repetir_senha" placeholder="" required validate />
+                                                    <span class="input-clear-button"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    {{#if empreendimentos}}
+                                        <ul>
+                                            <li>
+                                                <a class="item-link smart-select smart-select-init" data-open-in="sheet" data-sheet-close-link-text="Pronto">
+                                                    <select name="empreendimentos" multiple>
+                                                        {{#each empreendimentos}}
+                                                            <option value="{{id}}">{{nome}}</option>
+                                                        {{/each}}
+                                                    </select>
+                                                    <div class="item-content">
+                                                        <div class="item-inner">
+                                                            <div class="item-title">Marque seu empreendimento</div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    {{/if}}
+                                </div>
+                                <p class="row">
+                                    <input type="submit" class="col button button-large button-fill" value="Enviar" />
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="popup entrar">
+            <div class="view">
+                <div class="page">
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <div class="title">Entrar</div>
+                            <div class="right">
+                                <a href="#" class="link popup-close">Fechar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-content">
+                        <div class="block">
+                            <form action="{{$app.data.url}}/login" method="POST" class="form-ajax-submit" id="login">
+                                <input type="hidden" name="chave" value="{{$app.data.chave}}" class="noempty" />
+                                <div class="list no-hairlines-md">
+                                    <ul>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-title item-label">E-mail</div>
+                                                <div class="item-input-wrap">
+                                                    <input type="email" name="email" id="email" autocomplete="off" placeholder="" required validate />
+                                                    <span class="input-clear-button"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-title item-label">Senha</div>
+                                                <div class="item-input-wrap">
+                                                    <input type="password" name="senha" id="senha" autocomplete="off" minlength="6" placeholder="" required validate />
+                                                    <span class="input-clear-button"></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p class="row">
+                                    <input type="submit" class="col button button-large button-fill" value="Enviar" />
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        data: function () {
+            return {
+                empreendimentos: null
+            }
+        },
+        on: {
+            pageInit: function(e, page) {
+                var self = this;
+                var app = self.$app;
+
+                app.request.post(app.data.url+'/empreendimentos', { 
+                    chave: app.data.chave
+                }, function (data) {
+                    var d = JSON.parse(data);
+                    self.$setState({
+                        empreendimentos: d.empreendimentos
+                    });
+                });
+
+            }
+        }
+    };
+</script>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: wss: ws: data: http://open.velty.com.br/* 'unsafe-eval' 'unsafe-inline' gap://ready; style-src 'self' 'unsafe-inline' ; font-src 'self' data: fonts.gstatic.com; img-src 'self' data:; form-action *; connect-src * http: https: ws: wss:; media-src *; frame-src data: gap: wss: ws: data: http://open.velty.com.br:*">
+
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Color theme for statusbar -->
+    <meta name="theme-color" content="#FFCB05">
+    <!-- Your app title -->
+    <title>Ecomax</title>
+    <!-- Path to Framework7 Library CSS -->
+    <!-- <link rel="stylesheet" href="lib/framework7/css/framework7.min.css"> -->
+    <link rel="stylesheet" href="./lib/framework7/css/framework7.bundle.min.css">
+    <link rel="stylesheet" href="./lib/framework7-icons/css/framework7-icons.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+
+    <div id="fb-root"></div>
+
+    <div id="app">
+        <!-- Statusbar overlay -->
+        <div class="statusbar"></div>
+
+        <div class="views tabs safe-areas">
+            <div class="toolbar tabbar tabbar-labels toolbar-bottom">
+                <div class="toolbar-inner">
+                    <a href="#view-inicio" class="tab-link tab-link-active">
+                        <i class="f7-icons">home_fill</i>
+                        <span class="tabbar-label">In&iacute;cio</span>
+                    </a>
+                    <a href="#view-minhaconta" class="tab-link">
+                        <i class="f7-icons">person_round_fill</i>
+                        <span class="tabbar-label">Minha conta</span>
+                    </a>
+                    <a href="#view-servicos" class="tab-link">
+                        <i class="f7-icons">briefcase_fill</i>
+                        <span class="tabbar-label">Servi&ccedil;os</span>
+                    </a>
+                    <a href="#" class="tab-link btn-suporte">
+                        <i class="f7-icons">chat_bubble_fill</i>
+                        <span class="tabbar-label">Suporte</span>
+                    </a>
+                    <a href="#view-contato" class="tab-link">
+                        <i class="f7-icons">email_fill</i>
+                        <span class="tabbar-label">Contato</span>
+                    </a>
+                </div>
+            </div>
+            <div class="tabs-animated-wrap">
+                <div class="tabs">
+                    <div id="view-inicio" class="view view-main tab tab-active"></div>
+                    <div id="view-minhaconta" class="view tab"></div>
+                    <div id="view-servicos" class="view tab"></div>
+                    <div id="view-suporte" class="view tab"></div>
+                    <div id="view-contato" class="view tab"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="./lib/jquery/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="./lib/jquery-mask-plugin/jquery.mask.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="./lib/framework7/js/framework7.bundle.min.js"></script>
+    <script type="text/javascript" src="./js/app.js"></script>
+    <script type="text/javascript" src="./js/views.js"></script>
+    <script type="text/javascript" src="./js/functions.js"></script>
+
+</body>
+</html>

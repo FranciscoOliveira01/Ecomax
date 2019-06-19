@@ -1,0 +1,111 @@
+/*
+   statusbar-overlay sets the background color for the overlay. Black text is the default when the statusbar plugin is not added. When the
+   statusbar plugin is added, it also adds default setting to make the content white via:
+
+       <preference name="StatusBarStyle" value="lightcontent"/>
+
+   Setting the background color to black will allow the default light content (white text/icons) to show on it. The statusbar plugin is included
+   in the config.xml file and will be added by the CLI when you build locally.
+
+   See https://github.com/apache/cordova-plugin-statusbar
+*/
+
+:root {
+    --f7-theme-color: #2771C7;
+    --f7-theme-color-rgb: 0, 122, 255;
+    --f7-theme-color-shade: #0066d6;
+    --f7-theme-color-tint: #298fff;
+    --f7-button-border-radius: 0px;
+    --f7-picker-item-selected-text-color: #2771C7;
+}
+
+.statusbar-overlay {
+    background: #FFFFFF;
+}
+
+.page {
+    background-color: #FFCB05;
+}
+
+.navbar-inner {
+    text-transform: uppercase;
+}
+
+.center {
+    margin: 0px auto;
+    text-align: center;
+}
+
+.item-input-outline .item-label {
+    left: 0px;
+}
+
+.list .item-content {
+    padding-right: calc(var(--f7-list-item-padding-horizontal) + var(--f7-safe-area-left));
+}
+
+.block.cinza {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-bottom: var(--f7-block-margin-vertical);
+    padding-top: var(--f7-block-margin-vertical);
+    background-color: #F8F8F8;
+}
+
+.img-circle {
+    border-radius: 50%;
+    width: 40%;
+}
+
+.block-title {
+    margin-left: 0px;
+}
+
+#inicio.page-content {
+    background-image: url('../img/logotipo.png'), url('../img/background_inicial.jpg');
+    background-size: 55%, cover;
+    background-position: center top 30px, center;
+    background-repeat: no-repeat, repeat;
+}
+
+.intro .middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.intro .middle img {
+    max-width: 100%;
+    height: auto;
+    margin: 0px auto;
+}
+
+.intro .block-title {
+    text-align: center;
+    width: 90%;
+    display: table;
+    table-layout: fixed;
+    word-wrap: break-word;
+    white-space: unset;
+    margin-right: 0px;
+    margin: 0px auto 18px;
+}
+
+.intro .button {
+    color: #6D6D6D;
+    width: 80%;
+    margin: 0px auto;
+}
+
+.lista-solicitacoes .item-inner {
+    padding-right: 0px !important;
+}
+
+.card-header {
+    display: block;
+}
+
+.card-header small {
+    color: #8e8e93;
+}

@@ -1,0 +1,148 @@
+<template>
+    <div class="page" data-name="servicos">
+        <div class="page-content">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="center">Servi&ccedil;os</div>
+                </div>
+            </div>
+
+            {{#if empreendimentos}}
+
+                <div class="block servicos">
+                    <form action="{{$app.data.url}}/cadastro_servico" method="POST" class="form-ajax-submit form-assistencia" id="servicos">
+                        <input type="hidden" name="id_cliente" value="{{id_cliente}}" id="id_cliente" class="noempty" />
+                        <input type="hidden" name="id_tipo" value="1" id="id_tipo" class="noempty" />
+                        <input type="hidden" name="id_empreendimento" value="" id="id_empreendimento" class="noempty" />
+                        <input type="hidden" name="chave" value="{{$app.data.chave}}" class="noempty" />
+                        <div class="list no-hairlines-md">
+                            <ul>
+	                            <li class="item-content item-input">
+	                                <div class="item-inner">
+                                        <div class="item-title item-label">Tipo de Serviço</div>
+	                                    <div class="item-input-wrap">
+	                                        <input type="text" name="tipo" placeholder="Escolha uma opção" readonly="readonly" id="tipo" />
+	                                    </div>
+	                                </div>
+	                            </li>
+                                <li class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-title item-label">Empreendimento</div>
+                                        <div class="item-input-wrap">
+                                            <input type="text" name="empreendimento" class="noempty" placeholder="Escolha um empreendimento" readonly="readonly" id="lista-empreendimentos" required validate />
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-title item-label">N&uacute;mero do lote ou apartamento</div>
+                                        <div class="item-input-wrap">
+                                            <input type="text" name="numero" required validate />
+                                            <span class="input-clear-button"></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-title item-label">Mensagem</div>
+                                        <div class="item-input-wrap">
+                                            <textarea name="mensagem" class="resizable" required validate></textarea>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <p class="row">
+                            <input type="submit" class="col button button-large button-fill" value="Enviar" />
+                        </p>
+                    </form>
+
+                    {{#if solicitacoes}}
+                        <div class="list media-list lista-solicitacoes">
+                            <ul>
+                                {{#each solicitacoes}}
+                                    <li>
+                                        <a @click="$root.servico({{id_servico}})" class="item-link item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title-row">
+                                                    <div class="item-title">{{tipo}}</div>
+                                                    <div class="item-after"><span class="badge {{cor}}">{{status}}</span></div>
+                                                </div>
+                                                <div class="item-text">
+                                                    Solicitado em: {{dataehora}} 
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    {{/if}}
+
+                </div>
+
+                <div class="popup servico">
+                    <div class="view">
+                        <div class="page">
+                            <div class="navbar">
+                                <div class="navbar-inner">
+                                    <div class="title">Serviço</div>
+                                    <div class="right">
+                                        <a href="#" class="link popup-close">Fechar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="page-content">
+                                <div class="block"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {{else}}
+                <div class="card">
+                    <div class="card-content card-content-padding">Não foi encontrado nenhum empreendimento associado à sua conta. Por favor, entre em contato conosco para podermos habilitar o seu acesso.</div>
+                </div>    
+            {{/if}}
+
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        data: function () {
+            return {
+                solicitacoes: null,
+                id_cliente: null,
+                empreendimentos: null
+            }
+        },
+        on: {
+            pageInit: function(e, page) {
+                var self = this;
+                var app = self.$app;
+                var usuario = (app.methods.existeUsuario()) ? app.methods.getUsuario() : null ;
+
+                if (usuario) {
+                    app.request.post(app.data.url+'/listar_servicos', { 
+                        chave:app.data.chave, 
+                        id_cliente: usuario.cliente.id_cliente
+                    }, function (data) {
+
+                        app.preloader.hide();
+
+                        var solicitacoes = JSON.parse(data);
+
+                        self.$setState({
+                            solicitacoes: ( solicitacoes.length > 0 ? solicitacoes : null ),
+                            id_cliente: usuario.cliente.id_cliente,
+                            empreendimentos: usuario.cliente.empreendimentos
+                        });
+
+                        app.methods.pickerForm(e,['#lista-empreendimentos','#tipo']);
+                    });
+                }
+            }
+        }
+    };
+</script>

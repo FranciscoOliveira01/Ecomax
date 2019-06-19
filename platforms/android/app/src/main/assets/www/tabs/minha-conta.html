@@ -1,0 +1,99 @@
+<template>
+    <div class="page minha-conta" data-name="minha-conta">
+        <div class="page-content">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="center">Minha conta</div>
+                </div>
+            </div>
+            {{#if usuario}}
+                <div class="block cinza">
+                    <p align="center">
+                        <img class="img-circle center" src="img/avatar.jpg" />
+                    </p>
+                    <h2 class="center">{{usuario.nome}}</h2>
+                </div>
+                <div class="block">
+                    <form action="{{$app.data.url}}/editar" method="POST" id="minha-conta" class="form-ajax-submit">
+                        <input type="hidden" name="id_cliente" value="{{usuario.id_cliente}}" id="id_cliente" class="noempty" />
+                        <input type="hidden" name="chave" value="{{$app.data.chave}}" class="noempty" />
+                        <div class="list no-hairlines-md">
+                            <ul>
+                                <li class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-title item-label">Nome</div>
+                                        <div class="item-input-wrap">
+                                            <input type="text" name="nome" id="nome" value="{{usuario.nome}}" placeholder="" required validate />
+                                            <span class="input-clear-button"></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-title item-label">CPF</div>
+                                        <div class="item-input-wrap">
+                                            <input type="text" name="cpf" id="cpf" value="{{usuario.cpf}}" placeholder="" required validate />
+                                            <span class="input-clear-button"></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-title item-label">E-mail</div>
+                                        <div class="item-input-wrap">
+                                            <input type="email" name="email" id="email" value="{{usuario.email}}" placeholder="" required validate />
+                                            <span class="input-clear-button"></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-title item-label">Telefone</div>
+                                        <div class="item-input-wrap">
+                                            <input type="text" name="telefone" id="telefone" value="{{usuario.telefone}}" placeholder="" required validate />
+                                            <span class="input-clear-button"></span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        {{#if usuario.empreendimentos}}
+                            <div class="block-title empreendimentos">Meus empreendimentos</div>
+                            <div class="list simple-list empreendimentos">
+                                <ul class="lista-empreendimentos">
+                                    {{#each usuario.empreendimentos}}
+                                        <li>{{nome}}</li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+                        {{/if}}
+                        <p class="row">
+                            <input type="submit" class="col button button-large button-fill" value="Enviar" />
+                        </p>
+                    </form>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        data: function () {
+            return {
+                usuario: null
+            }
+        },
+        on: {
+            pageInit: function() {
+                var self = this;
+                var app = self.$app;
+                var usuario = (app.methods.existeUsuario()) ? app.methods.getUsuario() : null ;
+                if (usuario) {
+                    self.$setState({
+                        usuario: usuario.cliente
+                    });
+                }
+            }
+        }
+    };
+</script>
