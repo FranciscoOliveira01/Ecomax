@@ -324,8 +324,8 @@ var app = new Framework7({
                     on: {
                         open: function (popup) {
                             $$(popup.el).find('.link.arquivo').on('click',function(){
-                                var options = "'location=no,closebuttoncaption=Cerrar,toolbar=yes,enableViewportScale=yes";
-                                var ref = cordova.InAppBrowser.open($(this).attr('href'), '_system', options);
+                                // var options = "'location=no,closebuttoncaption=Cerrar,toolbar=yes,enableViewportScale=yes";
+                                var ref = cordova.InAppBrowser.open($(this).attr('href'), '_system', '');
                                 ref.addEventListener('exit', function(){
                                     ref = undefined;
                                 });
