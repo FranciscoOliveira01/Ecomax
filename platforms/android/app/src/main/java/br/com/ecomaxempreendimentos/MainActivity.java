@@ -17,7 +17,7 @@
        under the License.
  */
 
-package br.com.ecomaxapp;
+package br.com.ecomaxempreendimentos;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

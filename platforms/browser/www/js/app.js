@@ -146,7 +146,7 @@ var app = new Framework7({
         verificarSenha: function(senha, repetir_senha) {
             function validatePassword(senha,repetir_senha){
                 if(senha.val() != repetir_senha.val()) {
-                    repetir_senha[0].setCustomValidity("As senhas n√£o s√£o iguais");
+                    repetir_senha[0].setCustomValidity("As senhas n„o s„o iguais");
                 } else {
                     repetir_senha[0].setCustomValidity('');
                 }
@@ -195,7 +195,7 @@ var app = new Framework7({
             }
             cpf.on('change',function(){
                 if (!validateCPF($(this).val())) {
-                    $$('#cpf')[0].setCustomValidity("Este CPF n√£o √© v√°lido");
+                    $$('#cpf')[0].setCustomValidity("Este CPF n„o È v·lido");
                 } else {
                     $$('#cpf')[0].setCustomValidity("");
                 }
@@ -259,6 +259,7 @@ var app = new Framework7({
             app.methods.mask(el,null);
         },
         servico: function(id_servico) {
+            app.methods.getTypes();
 
             function template(dataehora, titulo, texto, rodape) {
                 var template = '<div class="card card-outline">'+
@@ -267,7 +268,7 @@ var app = new Framework7({
                 if (texto) {
                     template += '<div class="card-content card-content-padding">'+texto+'</div>';
                 } else {
-                    template += '<div class="card-content card-content-padding">A sua solicita√ß√£o foi enviada.</div>';
+                    template += '<div class="card-content card-content-padding">A sua solicitaÁ„o foi enviada.</div>';
                 }
 
                 if (rodape) {
@@ -294,7 +295,7 @@ var app = new Framework7({
 
                 app.preloader.hide();
 
-                var mensagem = data.mensagem !== null && data.mensagem !== '' ? data.mensagem : 'A sua solicita√ß√£o foi enviada.' ;
+                var mensagem = data.mensagem !== null && data.mensagem !== '' ? data.mensagem : 'A sua solicitaÁ„o foi enviada.' ;
 
                 var card = template(data.dataehora, usuario.cliente.nome,mensagem,null);
 
@@ -354,25 +355,46 @@ var app = new Framework7({
         picker: function(e, id) {
 
             var newTabEl = '.tab-active .page-current', el = $$(newTabEl).find(id);
+            
             var lista = Array();
             var valores = Array();
 
             switch(id) {
-                case '#tipo': 
-                    lista = ['Assist√™ncia t√©cnica','Segunda via de boleto'];
-                    valores = [1,2];
+                case '#tipo':
+                    app.methods.getTypes(el);
                 break;
                 default: 
                     var usuario = (app.methods.existeUsuario()) ? app.methods.getUsuario() : null ;
                     if (usuario) {
-                        $.each(usuario.cliente.empreendimentos,function(k,v){
+                        $.each(usuario.cliente.empreendimentos, function(k,v){
                             lista.push(v.nome);
                             valores.push(v.id);
                         });
                     }
+                    app.methods.createPicker( el, valores, lista );
                 break;
+
+                
             }
 
+
+        },
+
+        getTypes: (el) => {
+            var lista = Array();
+            var valores = Array();
+
+            app.request.get(app.data.url+'/tipos', (data) => {
+                const res = JSON.parse(data);
+                res.tipos.map(tipo => {
+                    lista.push(tipo.tipo);
+                    valores.push(tipo.id);
+                })
+                app.methods.createPicker( el, valores, lista );
+            });
+        },
+
+        createPicker: function(el, valores, lista){
             if (el.length > 0) {
                 app.picker.create({
                     inputEl: el,
