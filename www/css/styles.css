@@ -109,3 +109,12 @@
 .card-header small {
     color: #8e8e93;
 }
+
+form#contato ul{
+    padding-left: 0;
+}
+
+form#contato .setor{
+    margin-bottom: 10px;
+    margin-top: 0;
+}
